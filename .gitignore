@@ -62,3 +62,4 @@ bundle/
 # Bundle artifact
 *.jsbundle
 .history
+package-lock.json
