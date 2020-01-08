@@ -6,18 +6,23 @@ enum METHOD{
 	GET = 'GET'
 }
 
-interface ActionDescription{
+declare interface ActionDescription{
 	method:Array<METHOD>,
 	route:string,
-	action:Function
+	action:ControllerAction;
 }
-
 export default class BaseController{
 	controllerName: string;
 	actionList: Array<ActionDescription>;
 	constructor(){
 		this.controllerName = Reflect.getMetadata(CONTROLLER,Object.getPrototypeOf(this).constructor)
-		this.actionList = Object.getOwnPropertyNames(Object.getPrototypeOf(this)).map((item)=>Reflect.getMetadata( ACTION, this, item)).filter((v)=>v)
+		this.actionList = Object.getOwnPropertyNames(Object.getPrototypeOf(this))
+		.reduce((acc:Array<ActionDescription>,item)=>{
+			let ActionDescription:ActionDescription = Reflect.getMetadata( ACTION, this, item)
+			ActionDescription&&acc.push(ActionDescription)
+			return acc
+		},[])
+		// .map((item)=>Reflect.getMetadata( ACTION, this, item)).filter((v)=>v)
 	}
 }
 
@@ -33,8 +38,9 @@ const Controller = (path?: string): ClassDecorator => {
 		Reflect.defineMetadata(CONTROLLER, path, target);
 	}
 }
-const createMappingDecorator = (method: Array<METHOD>) => (route?: string): MethodDecorator => {
-	return (target, key, descriptor) => {
+
+const createMappingDecorator = (method: Array<METHOD>) => (route?: string) => {
+	return (target: Object, key: string | symbol, descriptor:TypedPropertyDescriptor<ControllerAction>) => {
 		if(!route){
 			if((key as string).endsWith(ACTION)){
 				route = '/'+(key as string).split(ACTION)[0]

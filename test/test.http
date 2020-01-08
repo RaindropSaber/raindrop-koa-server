@@ -1,0 +1,24 @@
+@hostname = localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@createdAt = {{$datetime iso8601}}
+
+@controller = test
+@action = hellow
+# GET http://localhost:8080/api/test/hellow HTTP/1.1
+
+
+###
+
+POST  http://{{host}}/api/{{controller}}/{{action}} HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+	"asdad":1,
+	"vvxcv":[21321,21312],
+	"ssdc":{"dsd":"dsad","dsdw":"dsad"}
+}
+
+###
+GET http://{{host}}/api/{{controller}}/{{action}} HTTP/1.1

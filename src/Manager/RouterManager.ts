@@ -1,10 +1,7 @@
 import Router from "koa-router";
 import TestController from '../Controllers/TestController';
-import BaseController from "../Controllers/BaseController";
-enum METHOD{
-	POST = 'POST',
-	GET = 'GET'
-}
+import BaseController,{METHOD} from "../Controllers/BaseController";
+
 export default class RouterManager{
 	router: Router<any, {}>;
 	controllerList: Array<typeof BaseController>;
@@ -35,7 +32,8 @@ export default class RouterManager{
 					console.log(`register Controller Action : "${methodEnum} /${controllerName}${action.route}"`)
 					method('/'+controllerName+action.route,(ctx,next)=>{
 						let params = ctx.request.params
-						action.action.call(controller,params)
+						let res = action.action.call(controller,params)
+						ctx.response.result = res
 						next()
 					})
 				});
