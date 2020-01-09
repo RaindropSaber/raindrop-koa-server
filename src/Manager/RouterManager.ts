@@ -9,10 +9,10 @@ export default class RouterManager{
 	constructor(public name:string){
 		const prefix = '/' + name.match(/[A-Za-z]+/g)?.join('/')
 		this.router = new Router().prefix(prefix)
+		this.router.use(paramsParser());
 		console.log(`creat Router : "${prefix}"`)
 		this.controllerList = [TestController]
 		this.registerController()
-		this.router.use(paramsParser());
 	}
 	registerController(){
 		this.controllerList.forEach((Controller)=>{
@@ -47,36 +47,3 @@ export default class RouterManager{
 	}
 
 }
-// const root = new Router()
-// function rootSetting(ctx:Context,next:Next){
-// 	ctx.set("Accept", "application/json")
-// 	next()
-// }
-// function checkRequ(ctx:Context,next:Next){
-// 	let method = ctx.request.method
-// 	let controller = ctx.params.controller
-// 	let action = ctx.params.action
-
-// 	next()
-// }
-
-// const test = new Router();
-// test.post('/:controller/:action', async (ctx,next) => {
-// 	let action = ctx.params.action
-// 	console.log(ctx.params)
-// 	ctx.body = JSON.stringify({a:"Hi TS",b:"Hi TS",c:"Hi TS",})
-//   	// ctx.body = "Hi TS";
-// })
-// test.get('/:controller/:action', async (ctx,next) => {
-// 	let action = ctx.params.action
-// 	console.log(ctx.request.href)
-// 	console.log(ctx.request.method)
-// 	// console.log(ctx.request.url)
-// 	// console.log(ctx.request.URL)
-// 	// console.log(ctx.request.query)
-// 	// console.log(ctx.request.querystring)
-// 	ctx.body = JSON.stringify({a:"Hi TS",b:"Hi TS",c:"Hi TS",})
-// })
-
-
-//  root.use('/api',rootSetting,checkRequ,test.routes()).routes()

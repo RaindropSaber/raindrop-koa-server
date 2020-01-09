@@ -5,12 +5,11 @@ export default class TestController extends BaseController{
 		super()
 			// controller.prototype
 	}
-	@Get()
+	@All()
 	hellowAction(params: any):ControllerResult {
-		console.log(params)
 		return {
-			code:111,
-			message:'string',
+			code:0,
+			message:'success',
 			data:params,
 		}
 	}
