@@ -1,6 +1,7 @@
 import Router from "koa-router";
 import TestController from '../Controllers/TestController';
 import BaseController,{METHOD} from "../Controllers/BaseController";
+import paramsParser from '../Middleware/ParamsParser';
 
 export default class RouterManager{
 	router: Router<any, {}>;
@@ -11,6 +12,7 @@ export default class RouterManager{
 		console.log(`creat Router : "${prefix}"`)
 		this.controllerList = [TestController]
 		this.registerController()
+		this.router.use(paramsParser());
 	}
 	registerController(){
 		this.controllerList.forEach((Controller)=>{

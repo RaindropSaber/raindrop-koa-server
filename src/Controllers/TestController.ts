@@ -11,7 +11,7 @@ export default class TestController extends BaseController{
 		return {
 			code:111,
 			message:'string',
-			data:{as:'asd'},
+			data:params,
 		}
 	}
 }
