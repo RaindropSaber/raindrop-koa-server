@@ -22,8 +22,8 @@ const options = {
 	key: fs.readFileSync(key,"utf8"),
 	cert: fs.readFileSync(cert,"utf8")
 }
-http.createServer(app.callback()).listen(3000);
-https.createServer(options,app.callback()).listen(3001);
+http.createServer(app.callback()).listen(80);
+https.createServer(options,app.callback()).listen(443);
 // app.listen(3000)
 console.log("Server running http  on port 3000");
 console.log("Server running https on port 3001");

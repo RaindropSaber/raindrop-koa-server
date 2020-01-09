@@ -1,0 +1,8 @@
+version: "3"
+services:
+  myserver:
+    build: .
+    ports:
+      - "3000:80"
+      - "3001:443"
+    container_name: myserver
