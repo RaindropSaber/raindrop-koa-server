@@ -9,7 +9,7 @@ import path from 'path'
 
 const app = new Koa();
 app.use(koaBodyparser());
-app.use(sslify({port:3001}));
+// app.use(sslify({port:3001}));
 
 app.use(new Router('/api').routes())
 
