@@ -13,4 +13,12 @@ export default class TestController extends BaseController{
 			data:params,
 		}
 	}
+	@All()
+	errorAction(params: any):ControllerResult {
+		return {
+			code:10001,
+			message:'fail',
+			data:params,
+		}
+	}
 }
