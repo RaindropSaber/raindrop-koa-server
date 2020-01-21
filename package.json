@@ -12,8 +12,13 @@
   "author": "raindrop",
   "license": "ISC",
   "dependencies": {
+	"@types/koa": "^2.11.0",
+    "@types/koa-router": "^7.0.42",
+	"@types/koa2-cors": "^2.0.1",
+	"@types/bluebird": "^3.5.29",
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-sslify": "^4.0.1",
+    "@types/validator": "^12.0.1",
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
     "koa-bodyparser": "^4.2.1",
@@ -22,12 +27,12 @@
     "koa-sslify": "^4.0.3",
     "koa2-cors": "^2.0.6",
     "log4js": "^6.1.0",
-    "reflect-metadata": "^0.1.13"
+    "mysql": "^2.17.1",
+    "mysql2": "^2.1.0",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^5.21.3"
   },
   "devDependencies": {
-    "@types/koa": "^2.11.0",
-    "@types/koa-router": "^7.0.42",
-    "@types/koa2-cors": "^2.0.1",
     "nodemon": "^2.0.2",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4"

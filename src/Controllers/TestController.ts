@@ -7,6 +7,7 @@ export default class TestController extends BaseController{
 	}
 	@All()
 	hellowAction(params: any):ControllerResult {
+		console.log(params)
 		return {
 			code:0,
 			message:'success',

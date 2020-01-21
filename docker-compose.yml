@@ -6,3 +6,5 @@ services:
       - "3000:80"
       - "3001:443"
     container_name: nodeserver
+    volumes:
+      - ./config/:/usr/src/app/config
